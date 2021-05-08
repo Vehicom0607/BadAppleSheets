@@ -13,8 +13,9 @@ import ToSpreadSheet
 import cv2
 
 
+
 def update_sheet(SPREADSHEET_ID, body, frame):
-    service.spreadsheets().batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()
+    result = service.spreadsheets().batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()
     print("Frame %s Sent" % frame)
 
 
@@ -24,7 +25,14 @@ ROWS = 150
 COLS = 300
 FRAMES = 5300
 print("Program Started")
-for i in range(1, FRAMES + 1):
+
+data = []
+
+for i in range(43, FRAMES + 1):
     img = cv2.imread('./Video/frames/%s.png' % i)
     body = CreateRequest.create_request(ROWS, COLS, img)
     print("Frame %s Rendered" % i)
+    data.append(body)
+
+for idx, frame in enumerate(data):
+    update_sheet(SPREADSHEET_ID, frame, idx)
