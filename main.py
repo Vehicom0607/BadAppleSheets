@@ -23,7 +23,7 @@ SPREADSHEET_ID = "1GOgCT7G7BUo5b_iM7RpGT831GLZOAQW8jayO4XEBkrQ"
 service = ToSpreadSheet.initSpreadSheet()
 ROWS = 150
 COLS = 300
-FRAMES = 5300
+FRAMES = 6300
 print("Program Started")
 
 data = []
